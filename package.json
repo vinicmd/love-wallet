@@ -23,5 +23,8 @@
     "build": "pnpm install && tsc",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
