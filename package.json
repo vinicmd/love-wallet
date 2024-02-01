@@ -1,0 +1,27 @@
+{
+  "name": "love-wallet-api",
+  "description": "A api for Love Wallet app",
+  "main": "src/server.ts",
+  "keywords": [
+    "wallet",
+    "nodejs",
+    "express",
+    "mongodb",
+    "typescript"
+  ],
+  "author": "Vinicius Duarte",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicmd/love-wallet-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vinicmd/love-wallet-api/issues"
+  },
+  "homepage": "https://github.com/vinicmd/love-wallet-api#readme",
+  "scripts": {
+    "build": "pnpm install && tsc",
+    "dev": "nodemon src/server.ts",
+    "start": "node dist/server.js"
+  }
+}
