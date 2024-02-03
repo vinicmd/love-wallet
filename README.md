@@ -11,3 +11,21 @@
 - [ ] wallet management
   - [ ] add bill
   - [ ] show sumary
+
+## Probably routes
+
+- [ ] User - `/user`
+  - [ ] create user `POST /user`
+  - [ ] show user `GET /user`
+  - [ ] edit user `PUT /user/{id}`
+  - [ ] delete user `DELETE /user/{id}`
+  - [ ] group users `PUT /user/group/{id}`
+- [ ] balance `/balance`
+  - [ ] add balance `POST /balance/add`
+  - [ ] remove balance `DELETE /balance/{id}`
+  - [ ] edit balance `PUT /balance/{id}`
+  - [ ] list 1 balance `GET /balance/{id}`
+  - [ ] list balance day `GET /balance/`
+  - [ ] list balance weekly `GET /balance/weekly`
+  - [ ] list balance monthly `GET /balance/monthly`
+  - [ ] ~list all balances~
