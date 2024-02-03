@@ -20,11 +20,13 @@
   },
   "homepage": "https://github.com/vinicmd/love-wallet-api#readme",
   "scripts": {
-    "build": "pnpm install && tsc",
+    "build": "tsc",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
@@ -32,5 +34,10 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1"
   }
 }
