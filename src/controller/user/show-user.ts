@@ -3,7 +3,7 @@ import { badRequest } from '../../helper/http'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { dbGetUser } from '../../db/usecase/user/get-user'
 import { InvalidParamError } from '../../errors/invalid-param-error'
-import { checkUserId } from '../../db/usecase/helpers/check-user'
+import { isValidObjectId } from 'mongoose'
 
 export const showUser = async (req: Request, res: Response) => {
   try {
@@ -12,8 +12,7 @@ export const showUser = async (req: Request, res: Response) => {
     }
     const { userId } = req.params
 
-    const validUserId = await checkUserId(userId)
-    if (!validUserId) {
+    if (!isValidObjectId(userId)) {
       return badRequest(res, InvalidParamError('userId'))
     }
 
