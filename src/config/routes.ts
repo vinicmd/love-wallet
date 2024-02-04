@@ -2,6 +2,7 @@ import { Router, Express } from 'express'
 import { createUser } from '../controller/user/create-user'
 import { showUser } from '../controller/user/show-user'
 import { editUser } from '../controller/user/edit-user'
+import { deleteUser } from '../controller/user/delete-user'
 export const router = Router()
 
 export default (app: Express): void => {
@@ -14,6 +15,8 @@ export default (app: Express): void => {
   router.get('/user/:userId', showUser)
 
   router.put('/user/:userId', editUser)
+
+  router.delete('/user/:userId', deleteUser)
 
   router.get('*', (_req, res) => res.sendStatus(404))
 
