@@ -7,7 +7,7 @@ export const dbAddUser = async ({
   name,
   password
 }: DbUser): Promise<DbUser> => {
-  const hashedPassword = encrypter(password)
+  const hashedPassword = await encrypter(password)
   const user = await User.create({ email, name, password: hashedPassword })
 
   return user

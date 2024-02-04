@@ -1,11 +1,44 @@
 import { Request, Response } from 'express'
+import { MissingParamError } from '../../errors/missing-param-error'
+import { badRequest } from '../../helper/http'
+import { InvalidParamError } from '../../errors/invalid-param-error'
+import { dbAddUser } from '../../db/usecase/user/add-user'
+import { isValidEmail } from '../../helper/is-valid-email'
+import { emailAlreadyRegistered } from '../../db/usecase/user/email-already-registered'
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    console.log(req.body)
+    const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
 
-    return res.sendStatus(200)
+    for (const field of requiredFields) {
+      if (!req.body[field]) {
+        return badRequest(res, MissingParamError(field))
+      }
+    }
+
+    const { name, email, password, passwordConfirmation } = req.body
+
+    if (password !== passwordConfirmation) {
+      return badRequest(res, InvalidParamError('password'))
+    }
+
+    if (!isValidEmail(email as string)) {
+      return badRequest(res, InvalidParamError('email'))
+    }
+
+    if (await emailAlreadyRegistered(email as string)) {
+      return badRequest(res, InvalidParamError('email'))
+    }
+
+    const user = await dbAddUser({
+      name,
+      email,
+      password
+    })
+
+    return res.status(201).json(user)
   } catch (error: unknown) {
     console.error(error)
+    res.sendStatus(500)
   }
 }

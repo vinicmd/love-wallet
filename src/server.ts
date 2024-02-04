@@ -1,12 +1,14 @@
-import express from 'express'
 import { envConfig } from './utils/env-configs'
-import { router } from './routes'
+import mongoose from 'mongoose'
+import app from './config/app'
 
-const app = express()
-
-const { port } = envConfig
-app.use(router)
-
-app.listen(port, () => {
-  console.log(`Server is running at port ${port}`)
-})
+mongoose
+  .connect(envConfig.mongoUrl)
+  .then(() => {
+    app.listen(envConfig.port, () => {
+      console.log(`Server is running at port ${envConfig.port}`)
+    })
+  })
+  .catch((error: unknown) => {
+    console.error(error)
+  })
