@@ -17,7 +17,7 @@
 - [ ] User - `/user`
   - [ x ] create user `POST /user`
   - [ x ] show user `GET /user/{id}`
-  - [ ] edit user `PUT /user/{id}`
+  - [ x ] edit user `PUT /user/{id}`
   - [ ] delete user `DELETE /user/{id}`
   - [ ] group users `PUT /user/group/{id}`
 - [ ] Login `Post /login`
