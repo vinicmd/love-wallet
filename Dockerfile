@@ -16,7 +16,7 @@ COPY --link . .
 
 RUN npm run build
 
-RUN npm install --production=true
+RUN npm install --production=true --omit=dev
 
 EXPOSE 3001
 

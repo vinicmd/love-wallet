@@ -1,8 +1,11 @@
-import { Router, Express } from 'express'
+import { Express, Router } from 'express'
+
 import { createUser } from '../controller/user/create-user'
-import { showUser } from '../controller/user/show-user'
-import { editUser } from '../controller/user/edit-user'
 import { deleteUser } from '../controller/user/delete-user'
+import { editUser } from '../controller/user/edit-user'
+import { login } from '../controller/user/login'
+import { showUser } from '../controller/user/show-user'
+
 export const router = Router()
 
 export default (app: Express): void => {
@@ -17,6 +20,8 @@ export default (app: Express): void => {
   router.put('/user/:userId', editUser)
 
   router.delete('/user/:userId', deleteUser)
+
+  router.post('/login', login)
 
   router.get('*', (_req, res) => res.sendStatus(404))
 
