@@ -1,13 +1,12 @@
 import { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
 
 import { User } from '../../db/models/User'
 import { InvalidParamError } from '../../errors/invalid-param-error'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { comparePassword } from '../../helper/check-password'
+import { createJWTToken } from '../../helper/create-jwt-token'
 import { badRequest, notFound } from '../../helper/http'
 import { isValidEmail } from '../../helper/is-valid-email'
-import { envConfig } from '../../utils/env-configs'
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -27,20 +26,17 @@ export const login = async (req: Request, res: Response) => {
 
     const user = await User.findOne({ email })
 
-    if (!user) {
-      return notFound(res)
-    }
+    if (!user) return notFound(res)
 
     const { _id, password: hashedPassword } = user
 
     const isValid = await comparePassword(password as string, hashedPassword)
+
     if (!isValid) return notFound(res)
 
-    const token = jwt.sign({ _id }, envConfig.secret, {
-      expiresIn: '60d'
-    })
+    const token = createJWTToken(_id)
 
-    return res.status(200).json({ auth: true, token })
+    return res.set('Authorization', token).sendStatus(204)
   } catch (error) {
     console.error(error)
   }
