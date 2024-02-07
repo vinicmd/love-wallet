@@ -12,9 +12,9 @@ export const changeUserPassword = async (req: Request, res: Response) => {
       return badRequest(res, MissingParamError('userId'))
     }
 
-    const { userId } = req.params
+    const userId = String(req.params.userId)
 
-    const user = await dbGetUser(userId)
+    const user = await dbGetUser('_id', userId)
 
     if (!user) {
       return notFound(res)

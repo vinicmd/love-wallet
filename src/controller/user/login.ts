@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { User } from '../../db/models/User'
+import { dbGetUser } from '../../db/usecase/user/get-user'
 import { InvalidParamError } from '../../errors/invalid-param-error'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { comparePassword } from '../../helper/check-password'
@@ -25,7 +25,7 @@ export const login = async (req: Request, res: Response) => {
       return badRequest(res, InvalidParamError('email'))
     }
 
-    const user = await User.findOne({ email })
+    const user = await dbGetUser('email', email)
 
     if (!user) return notFound(res)
 
