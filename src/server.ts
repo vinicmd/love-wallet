@@ -1,6 +1,8 @@
-import { envConfig } from './utils/env-configs'
+import 'dotenv/config'
 import mongoose from 'mongoose'
+
 import app from './config/app'
+import { envConfig } from './utils/env-configs'
 
 mongoose
   .connect(envConfig.mongoUrl)

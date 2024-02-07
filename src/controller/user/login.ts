@@ -18,9 +18,10 @@ export const login = async (req: Request, res: Response) => {
       }
     }
 
-    const { email, password } = req.body
+    const email = String(req.body.email)
+    const password = String(req.body.password)
 
-    if (!isValidEmail(email as string)) {
+    if (!isValidEmail(email)) {
       return badRequest(res, InvalidParamError('email'))
     }
 
@@ -30,7 +31,7 @@ export const login = async (req: Request, res: Response) => {
 
     const { _id, password: hashedPassword } = user
 
-    const isValid = await comparePassword(password as string, hashedPassword)
+    const isValid = await comparePassword(password, hashedPassword)
 
     if (!isValid) return notFound(res)
 
