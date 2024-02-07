@@ -15,12 +15,12 @@
 ## Probably routes
 
 - [ ] User - `/user`
-  - [ x ] create user `POST /user`
-  - [ x ] show user `GET /user/{id}`
-  - [ x ] edit user `PUT /user/{id}`
-  - [ x ] delete user `DELETE /user/{id}`
+  - [x] create user `POST /user`
+  - [x] show user `GET /user/{id}`
+  - [x] edit user `PUT /user/{id}`
+  - [x] delete user `DELETE /user/{id}`
   - [ ] group users `PUT /user/group/{id}`
-- [ ] Login `Post /login`
+- [x] Login `Post /login`
 - [ ] Logout `Post /logout`
 - [ ] balance `/balance`
   - [ ] add balance `POST /balance/add`
