@@ -4,6 +4,7 @@ import { createUser } from '../controller/user/create-user'
 import { deleteUser } from '../controller/user/delete-user'
 import { editUser } from '../controller/user/edit-user'
 import { login } from '../controller/user/login'
+import { logout } from '../controller/user/logout'
 import { showUser } from '../controller/user/show-user'
 
 export const router = Router()
@@ -22,6 +23,8 @@ export default (app: Express): void => {
   router.delete('/user/:userId', deleteUser)
 
   router.post('/login', login)
+
+  router.post('/logout', logout)
 
   router.get('*', (_req, res) => res.sendStatus(404))
 
