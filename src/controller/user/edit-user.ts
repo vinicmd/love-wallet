@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
-import { badRequest } from '../../helper/http'
-import { MissingParamError } from '../../errors/missing-param-error'
 import { isValidObjectId } from 'mongoose'
-import { InvalidParamError } from '../../errors/invalid-param-error'
-import { isValidEmail } from '../../helper/is-valid-email'
+
 import { dbEditInfoUser } from '../../db/usecase/user/edit-info-user'
+import { InvalidParamError } from '../../errors/invalid-param-error'
+import { MissingParamError } from '../../errors/missing-param-error'
+import { badRequest } from '../../helper/http'
+import { isValidEmail } from '../../helper/is-valid-email'
 
 export const editUser = async (req: Request, res: Response) => {
   try {

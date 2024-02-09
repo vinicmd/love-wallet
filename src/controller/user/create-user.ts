@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
+
+import { emailAlreadyRegistered } from '../../db/usecase/helpers/email-already-registered'
+import { dbAddUser } from '../../db/usecase/user/add-user'
+import { InvalidParamError } from '../../errors/invalid-param-error'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { badRequest } from '../../helper/http'
-import { InvalidParamError } from '../../errors/invalid-param-error'
-import { dbAddUser } from '../../db/usecase/user/add-user'
 import { isValidEmail } from '../../helper/is-valid-email'
-import { emailAlreadyRegistered } from '../../db/usecase/helpers/email-already-registered'
 
 export const createUser = async (req: Request, res: Response) => {
   try {
